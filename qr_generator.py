@@ -3,13 +3,6 @@ import qrcode
 
 
 def generate(text: str, output_file: str = "qr.png", size: int = 10):
-    """
-    Генерирует QR-код: показывает его прямо в консоли и сохраняет в PNG-файл.
-
-    :param text: текст или ссылка для кодирования
-    :param output_file: имя выходного файла
-    :param size: размер одного "квадратика" QR-кода в пикселях (box_size)
-    """
     qr = qrcode.QRCode(
         version=None,
         error_correction=qrcode.constants.ERROR_CORRECT_M,
@@ -19,7 +12,6 @@ def generate(text: str, output_file: str = "qr.png", size: int = 10):
     qr.add_data(text)
     qr.make(fit=True)
 
-    # выводит QR-код прямо в консоль (ASCII)
     qr.print_ascii(invert=True)
 
     img = qr.make_image(fill_color="black", back_color="white")
@@ -33,7 +25,7 @@ def main():
         size = int(sys.argv[3]) if len(sys.argv) >= 4 else 10
     else:
 
-        text = input("Введите ссылку: ")
+        text = input("Введите ссылку/enter link: ")
         output_file = "qr.png"
         size = 10
 
